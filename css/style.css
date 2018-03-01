@@ -1,0 +1,52 @@
+/* General Styling */
+
+html, body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;          /* Likely future */ 
+}
+a:link, a:visited {
+}
+a:active, a:hover {
+}
+.center {
+	text-align: center;
+}
+.tmid { /* Center block-level elements */
+	margin: 0px auto;
+}
+.fullpage {
+	width: 100%;
+	height: 100%;
+}
+.vcenter {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* Page styling */
+
+.content {
+	width: 100%;
+	max-width: 900px;
+}
+.button {
+	color: #fff;
+	background-color: #000;
+	border: 3px solid #fff;
+	border-radius: 15px;
+	padding: 5px;
+	margin: 10px;
+	display: inline-block;
+	cursor: pointer;
+}
+.button p {
+	margin: 0;
+}
