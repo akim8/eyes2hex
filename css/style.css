@@ -12,9 +12,13 @@ html, body {
 	-ms-user-select: none;      /* IE 10+ */
 	user-select: none;          /* Likely future */
 }
+p {
+	font-size: 20px;
+}
 a:link, a:visited {
 }
 a:active, a:hover {
+	text-decoration: none;
 }
 .center {
 	text-align: center;
@@ -35,16 +39,29 @@ a:active, a:hover {
 /* Page styling */
 
 .content {
-	width: 100%;
+	width: calc(100% - 60px);
 	max-width: 900px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.fixedtop {
+	position: fixed;
+	top: 0;
+}
+.fixedbottom {
+	position: fixed;
+	bottom: 0;
+}
+.nomargin {
+	margin: 0;
 }
 .button {
 	color: #fff;
 	background-color: #000;
 	border: 3px solid #fff;
 	border-radius: 15px;
-	padding: 5px;
-	margin: 10px;
+	padding: 10px;
+	margin: 25px;
 	display: inline-block;
 	cursor: pointer;
 }

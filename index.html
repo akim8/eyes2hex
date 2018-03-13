@@ -8,18 +8,33 @@
 		<meta name="description" content="A game about colors and hexidecimal codes.">
 		<link rel="icon" type="image/png" href="images/favicon.png">
 
-		<meta name="google" value="notranslate">
-
 		<link rel="stylesheet" href="css/style.css">
 		<style media="screen">
 		</style>
 	</head>
 	<body>
-		<div class="fullpage">
+		<div class="fullpage" id="titlescreen">
+		<div class="content tmid center fixedbottom"><p class="baretext">A game by <a href="https://kim4a.github.io" class="baretext">kim4a</a> &middot <a href="https://github.com/kim4a/eyes2hex" class="baretext">Source</a></p></div>
 			<div class="content tmid center vcenter">
-				<p id="testtext" style="text-align: left; padding: 30px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<div class="button" id="newcolor">
-					<p>Generate a new color!</p>
+				<h1 class="nomargin baretext">eyes2hex</h1>
+				<p class="baretext">High score: <span id="highscore">0</span></p>
+				<div class="button" id="start"><p>Start</p></div>
+			</div>
+		</div>
+		<div class="fullpage" id="gamescreen">
+			<div class="content tmid center fixedtop"><p class="baretext">Score: <span id="score"></span></p></div>
+			<div class="vcenter">
+				<div class="content tmid center">
+					<div class="button" id="choice1"><p></p></div>
+					<div class="button" id="choice2"><p></p></div>
+				</div>
+				<div class="content tmid center">
+					<div class="button" id="choice3"><p></p></div>
+					<div class="button" id="choice4"><p></p></div>
+				</div>
+				<div class="content tmid center">
+					<div class="button" id="choice5"><p></p></div>
+					<div class="button" id="choice6"><p></p></div>
 				</div>
 			</div>
 		</div>

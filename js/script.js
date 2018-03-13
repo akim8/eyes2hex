@@ -1,16 +1,83 @@
 window.onload = function(e) {
 	document.body.addEventListener('touchstart', preventZoom);
-	document.getElementById('newcolor').addEventListener('click', newBGColor);
+
+	document.getElementById('start').addEventListener('click', startGame);
+	document.getElementById('choice1').addEventListener('click', function() {makeChoice(1);});
+	document.getElementById('choice2').addEventListener('click', function() {makeChoice(2);});
+	document.getElementById('choice3').addEventListener('click', function() {makeChoice(3);});
+	document.getElementById('choice4').addEventListener('click', function() {makeChoice(4);});
+	document.getElementById('choice5').addEventListener('click', function() {makeChoice(5);});
+	document.getElementById('choice6').addEventListener('click', function() {makeChoice(6);});
+
+	gameScreenDisplay = document.getElementById('gamescreen').style.display = "none";
+
+	newBGColor();
+}
+
+function startGame() {
+	document.getElementById('score').innerHTML = "0";
+	newBGColor();
+	toggleScreen();
+	createChoice();
+}
+
+function createChoice() {
+	// TODO:
+	var correctChoice = getRandomInt(6);
+	var choice1 = document.getElementById('choice1');
+	var choice2 = document.getElementById('choice2');
+	var choice3 = document.getElementById('choice3');
+	var choice4 = document.getElementById('choice4');
+	var choice5 = document.getElementById('choice5');
+	var choice6 = document.getElementById('choice6');
+}
+
+function makeChoice(choice) {
+	// TODO: 
+	console.log(choice);
+}
+
+function setHighScore(score) {
+	var highscore = document.getElementById('highscore');
+	if (highscore.innerHTML < score) {
+		highscore.innerHTML = score;
+	}
+}
+
+function toggleScreen() {
+	var titleScreen = document.getElementById('titlescreen');
+	var gameScreen = document.getElementById('gamescreen');
+	if (gameScreen.style.display == "none") {
+		titleScreen.style.display = "none";
+		gameScreen.style.display = "";
+	}
+	else {
+		titleScreen.style.display = "";
+		gameScreen.style.display = "none";
+	}
+}
+
+function makeChoice(choice) {
+	console.log(choice);
 }
 
 function newBGColor() {
 	var newColor = getRandomHexColor();
 	document.body.style.backgroundColor = newColor;
-	if (colorIsDark(newColor)) {
-		document.getElementById('testtext').style.color = "#fff";
+	fixTextContrast(colorIsDark(newColor));
+}
+
+function fixTextContrast(darkBG) {
+	var bareTextElementList = document.getElementsByClassName('baretext');
+	if (darkBG) {
+		for (x of bareTextElementList) {
+			x.style.color = "#fff";
+		}
 	}
 	else {
-		document.getElementById('testtext').style.color = "#000";
+		for (x of bareTextElementList) {
+			x.style.color = "#000";
+		}
 	}
 }
 
