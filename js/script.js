@@ -11,29 +11,42 @@ window.onload = function(e) {
 
 	gameScreenDisplay = document.getElementById('gamescreen').style.display = "none";
 
-	newBGColor();
+	setBGColor();
 }
 
 function startGame() {
 	document.getElementById('score').innerHTML = "0";
-	newBGColor();
+	setBGColor();
 	toggleScreen();
-	createChoice();
+	setChoices();
 }
 
-function createChoice() {
-	// TODO:
-	var correctChoice = getRandomInt(6);
-	var choice1 = document.getElementById('choice1');
-	var choice2 = document.getElementById('choice2');
-	var choice3 = document.getElementById('choice3');
-	var choice4 = document.getElementById('choice4');
-	var choice5 = document.getElementById('choice5');
-	var choice6 = document.getElementById('choice6');
+function setChoices() {
+	// difficulty curve: https://www.desmos.com/calculator/plpfzjkwyi
+	var difficultyMultiplier = Math.floor(16777215 * Math.pow(.83, document.getElementById('score').innerHTML));
+	var bgColorDecimal = parseInt(rgb2hex(document.body.style.backgroundColor), 16); // parseInt(hexString, 16) converts hexidecimal to decimal
+	var choiceButtons = document.getElementsByClassName('choice');
+
+	for (x of choiceButtons) {
+
+		var answerVariation = bgColorDecimal + (getRandomInt(difficultyMultiplier * 2) - difficultyMultiplier);
+
+		if (answerVariation > 16777215)
+			answerVariation -= 16777215;
+		else if (answerVariation < 0)
+			answerVariation += 16777215;
+
+		x.innerHTML = "#" + answerVariation.toString(16);
+	}
+
+	choiceButtons[getRandomInt(6) - 1].innerHTML = "#" + bgColorDecimal.toString(16);
+	console.log(bgColorDecimal.toString(16));
 }
+
+// 16777215 8388607
 
 function makeChoice(choice) {
-	// TODO: 
+	// TODO:
 	console.log(choice);
 }
 
@@ -57,17 +70,13 @@ function toggleScreen() {
 	}
 }
 
-function makeChoice(choice) {
-	console.log(choice);
-}
-
-function newBGColor() {
+function setBGColor() {
 	var newColor = getRandomHexColor();
 	document.body.style.backgroundColor = newColor;
-	fixTextContrast(colorIsDark(newColor));
+	setTextContrast(colorIsDark(newColor));
 }
 
-function fixTextContrast(darkBG) {
+function setTextContrast(darkBG) {
 	var bareTextElementList = document.getElementsByClassName('baretext');
 	if (darkBG) {
 		for (x of bareTextElementList) {
@@ -82,7 +91,7 @@ function fixTextContrast(darkBG) {
 }
 
 function getRandomInt(max) { // Returns number between 1 and max
-  return Math.floor(Math.random() * Math.floor(max)) + 1;
+	return Math.floor(Math.random() * Math.floor(max)) + 1;
 }
 
 function getRandomHexColor() {
@@ -113,4 +122,13 @@ function preventZoom(e) { // Prevent double-tap zoom on iOS Safari
 	if (!dt || dt > 500 || fingers > 1) return; // not double-tap
 	e.preventDefault();
 	e.target.click();
+}
+
+// https://stackoverflow.com/a/3627747
+function rgb2hex(rgb) {
+	rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+	function hex(x) {
+		return ("0" + parseInt(x).toString(16)).slice(-2);
+	}
+	return hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
