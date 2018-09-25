@@ -1,1 +1,3 @@
-# [eyes2hex](https://kim4a.github.io/eyes2hex)
+# [eyes2hex](https://akim8.github.io/eyes2hex)
+
+A quiz game about guessing colors by their hexidecimal code.
